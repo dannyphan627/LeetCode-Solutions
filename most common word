@@ -1,0 +1,23 @@
+var mostCommonWord = function(paragraph, banned) {
+    const bannedWord = new Set(banned);
+    const mapWords = new Map();
+    let words = paragraph.split(/\W+/);
+    let result = " ";
+    for(let word of words){
+        let lowerCaseWord = word.toLowerCase();
+        
+        if(!bannedWord.has(lowerCaseWord)){
+            if(mapWords[lowerCaseWord] ===  undefined){
+                mapWords[lowerCaseWord] = 0;
+            }
+            
+            mapWords[lowerCaseWord]++;
+            
+            if(result === " " || mapWords[lowerCaseWord] > mapWords[result]){
+                result = lowerCaseWord;
+            }
+        }
+    }
+
+    return result
+};
